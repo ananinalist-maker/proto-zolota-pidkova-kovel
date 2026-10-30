@@ -784,6 +784,8 @@ h1,h2,h3,.st,.wordmark,.film__t,.hero h1,.cover .wordmark{text-transform:none;fo
 .wm.wm--ring{width:.7em;height:.9em;margin:0 .32em 0 0;margin-top:-.12em;color:#C99A45}
 .hero h1{font-size:clamp(40px,5.4vw,84px);line-height:1}
 @media (min-width:761px){ .hero h1{top:calc(76px + (19% - 76px) / 2)} }
+/* на ноутбуці назва в чистому небі над дахом, щоб не закривати HOTEL на фронтоні */
+@media (min-width:1200px){ .hero h1{top:calc(4px + 1.2vh)!important;transform:none!important;font-size:clamp(48px,4.4vw,80px)} }
 @media (max-width:760px){ .hero h1{font-size:clamp(34px,11vw,52px)} }
 </style>
 </head>
@@ -1432,7 +1434,7 @@ h1,h2,h3,.st,.wordmark,.film__t,.hero h1,.cover .wordmark{text-transform:none;fo
   <div class="film" id="film" aria-labelledby="film-t">
     <div class="film__media" aria-hidden="true">
       <picture>
-        <source media="(max-width: 760px)" srcset="video/footer_poster_720x960.jpg" width="720" height="960">
+        <source media="(max-width: 760px)" srcset="video/footer_poster_720x1280.jpg" width="720" height="1280">
         <img src="video/footer_poster_1280x720.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
       </picture>
       <video id="filmVideo" muted playsinline loop preload="none" disablepictureinpicture tabindex="-1"></video>
@@ -1443,7 +1445,7 @@ h1,h2,h3,.st,.wordmark,.film__t,.hero h1,.cover .wordmark{text-transform:none;fo
       <p class="film__sub" data-rv>До центру Ковеля 4 хвилини, до кордону в Ягодині близько години. Машина ночує у дворі, а зранку кава в кафе на першому поверсі і знову в дорогу.</p>
       <a class="btn btn--line film__go" href="#bron" data-rv>Забронювати номер <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
-    <p class="film__cr">Відео зібране для прототипу з фото готелю.</p>
+    <p class="film__cr">Настроєве відео зібране для прототипу за фото тераси готелю.</p>
   </div>
   <div class="wrap">
     <div class="foot__top">
@@ -1477,7 +1479,7 @@ h1,h2,h3,.st,.wordmark,.film__t,.hero h1,.cover .wordmark{text-transform:none;fo
       </div>
     </div>
     <div class="foot__cr">
-      <p>Фото з Google-картки готелю і його сторінки бронювання. Відео на першому екрані настроєве: кадр і рух зібрані для прототипу за фото готелю. Відео в підвалі змонтоване з цих фото. У робочій версії тут будуть ваші фото й відео.</p>
+      <p>Фото з Google-картки готелю і його сторінки бронювання. Відео на першому екрані настроєве: кадр і рух зібрані для прототипу за фото готелю. Відео в підвалі теж настроєве, за фото тераси. У робочій версії тут будуть ваші фото й відео.</p>
       <p>Номери, правила й послуги: сторінки готелю в Google і на сайтах бронювання. Відстані й карта: OpenStreetMap. Цитати: відгуки гостей.</p>
       <p>Прототип сайту для готелю «Золота підкова», зібраний за відкритими даними, це не офіційний сайт готелю. У робочій версії сайт налаштовується під пошук Google і під відповіді ChatGPT та інших AI-помічників, щоб готель знаходили ті, хто шукає, де зупинитися в Ковелі.</p>
     </div>
@@ -1744,7 +1746,7 @@ h1,h2,h3,.st,.wordmark,.film__t,.hero h1,.cover .wordmark{text-transform:none;fo
     [].forEach.call(rv, function(el){ el.classList.add('is-in'); });
   }
 
-  /* відео першого екрана: грає один раз, 8 с без звуку, і лишається на вечірньому кадрі; без руху за reduced-motion і економії трафіку */
+  /* відео першого екрана: грає один раз, 7-8 с без звуку, і лишається на вечірньому кадрі; без руху за reduced-motion і економії трафіку */
   (function heroVideo(){
     var h = d.getElementById('hero'), v = d.getElementById('heroVideo'), btn = d.getElementById('heroPause');
     var calm = reduce.matches || !!(navigator.connection && navigator.connection.saveData);
@@ -1784,7 +1786,7 @@ h1,h2,h3,.st,.wordmark,.film__t,.hero h1,.cover .wordmark{text-transform:none;fo
     new IntersectionObserver(function(en){
       var e = en[en.length - 1];
       if (e.isIntersecting) {
-        if (!loaded) { loaded = true; v.src = mob.matches ? 'video/footer_720x960.mp4' : 'video/footer_1280x720.mp4'; v.preload = 'auto'; v.load(); }
+        if (!loaded) { loaded = true; v.src = mob.matches ? 'video/footer_720x1280.mp4' : 'video/footer_1280x720.mp4'; v.preload = 'auto'; v.load(); }
         play();
       } else if (loaded) { v.pause(); }
     }, { rootMargin: '300px 0px 300px 0px' }).observe(box);
